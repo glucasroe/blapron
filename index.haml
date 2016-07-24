@@ -1,0 +1,99 @@
+!!!
+%head
+    %link(rel='stylesheet' type='text/css' href='css/style.css')
+%body
+    %h1 Here's your recipes for the week
+    %input.loop-counter#loop-counter(type='number' value='1')
+    %button.generate-recipes#generate-recipes() Generate Recipes
+    .recipe-container
+        .recipe
+            %button.recipe__regenerate New Recipe
+            .recipe__title I'm the title, yo
+            .recipe__link I'm a link, yo
+    #storage
+
+    :javascript
+        //Definitions
+        pageUrl = 'http://cors.io/?u=https://www.blueapron.com/recipes/'; //user cors.io for cross domain function
+        exclude = 0; //To make sure a number doesn't come up when rerolled
+        minRecipe = 250; //Magic numbers from Blue Apron guess and test
+        maxRecipe = 949;
+
+        //get recipe function
+        function getRecipe(pageURL){
+            recipeNumber = getRandomInt(minRecipe, maxRecipe).toString();
+
+            //Restart function if using excluded number
+            if(recipeNumber == exclude){
+                getRecipe();
+            }
+            pageURL = pageURL + recipeNumber;
+            httpGet(pageURL);
+            
+            //recipePage now holds values
+            
+            //restart function if you get a 404 page
+            if(recipePage.indexOf('js-RecipeArea') == -1){
+                getRecipe();
+            }
+
+            /*
+            If I write this to a div, then I can use native methods for targetting classes
+            inside of the BlueApron DOM. The only real drawback of this that I can think of is 
+            that I would be downloading a bunch of images and assets that I don't 
+            need, so I think it would be faster to just search through the resultant string and
+            extract data based on pattern matching.
+
+            But that is a lot harder.
+            */
+
+            //Flatten it all into one giant linear string
+            recipePage = recipePage.replace(/(\r\n|\n|\r)/gm,"");
+
+
+            //Extract the Recipe URL
+            findLink = new RegExp(/(?:pdf-download-link" href=")(.*?\.pdf)/g);
+            recipeLink = findLink.exec(recipePage);
+            document.getElementsByClassName('recipe__link')[0].innerHTML = "<a href='" + recipeLink[1] + "'>Recipe Link</a>";
+
+            //Extract Recipe Title
+            findTitle = new RegExp(/(?:main-title\"\>)(.*<\/h1>)/gmi);
+            recipeTitle = findTitle.exec(recipePage);
+            console.log(recipeTitle);
+            document.getElementsByClassName('recipe__title')[0].innerHTML = recipeTitle;
+        }
+
+        //AJAX function from http://stackoverflow.com/a/10642418 Removed the IE5/6 tester because IDGAF
+        function httpGet(theUrl){
+            xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    recipePage = xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET", theUrl, false);
+            xmlhttp.send();    
+        }
+
+        //generate recipes loop
+        function generateRecipes(pageUrl){
+            loopCounter = document.getElementById('loop-counter').value;
+            while(loopCounter != 0){
+                getRecipe(pageUrl);
+                loopCounter--;
+            }
+        }
+        //generate recipes function
+        document.getElementById("generate-recipes").addEventListener("click", function(){
+            generateRecipes(pageUrl);
+        });
+
+        //utility functions
+        function testLog(theValue){
+            console.log(theValue);
+        }
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
