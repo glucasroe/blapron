@@ -8,10 +8,10 @@
     .recipe-container
         .recipe
             %button.recipe__regenerate New Recipe
-            .recipe__title I'm the title, yo
+            %h2.recipe__title I'm the title, yo
+            %h3.recipe__subtitle I'm the subtitle, yo
             .recipe__link I'm a link, yo
     #storage
-
     :javascript
         //Definitions
         pageUrl = 'http://cors.io/?u=https://www.blueapron.com/recipes/'; //user cors.io for cross domain function
@@ -57,10 +57,15 @@
             document.getElementsByClassName('recipe__link')[0].innerHTML = "<a href='" + recipeLink[1] + "'>Recipe Link</a>";
 
             //Extract Recipe Title
-            findTitle = new RegExp(/(?:main-title\"\>)(.*<\/h1>)/gmi);
+            findTitle = new RegExp(/(?:main-title'>)(.*\s)(?:.*<\/h1>)/im);
             recipeTitle = findTitle.exec(recipePage);
-            console.log(recipeTitle);
-            document.getElementsByClassName('recipe__title')[0].innerHTML = recipeTitle;
+            document.getElementsByClassName('recipe__title')[0].innerHTML = recipeTitle[1];
+
+            //Extract Recipe Subtitle
+            findSubTitle = new RegExp(/(?:sub-title'>)(.*)(?=.*?<\/h2>)/im);
+            recipeSubTitle = findSubTitle.exec(recipePage);
+            console.log(recipeSubTitle);
+            document.getElementsByClassName('recipe__subtitle')[0].innerHTML = recipeSubTitle[1];
         }
 
         //AJAX function from http://stackoverflow.com/a/10642418 Removed the IE5/6 tester because IDGAF

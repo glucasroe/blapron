@@ -9,7 +9,8 @@
   <div class='recipe-container'>
     <div class='recipe'>
       <button class='recipe__regenerate'>New Recipe</button>
-      <div class='recipe__title'>I'm the title, yo</div>
+      <h2 class='recipe__title'>I'm the title, yo</h2>
+      <h3 class='recipe__subtitle'>I'm the subtitle, yo</h3>
       <div class='recipe__link'>I'm a link, yo</div>
     </div>
   </div>
@@ -59,10 +60,15 @@
         document.getElementsByClassName('recipe__link')[0].innerHTML = "<a href='" + recipeLink[1] + "'>Recipe Link</a>";
     
         //Extract Recipe Title
-        findTitle = new RegExp(/(?:main-title\"\>)(.*<\/h1>)/gmi);
+        findTitle = new RegExp(/(?:main-title'>)(.*\s)(?:.*<\/h1>)/im);
         recipeTitle = findTitle.exec(recipePage);
-        console.log(recipeTitle);
-        document.getElementsByClassName('recipe__title')[0].innerHTML = recipeTitle;
+        document.getElementsByClassName('recipe__title')[0].innerHTML = recipeTitle[1];
+    
+        //Extract Recipe Subtitle
+        findSubTitle = new RegExp(/(?:sub-title'>)(.*)(?=.*?<\/h2>)/im);
+        recipeSubTitle = findSubTitle.exec(recipePage);
+        console.log(recipeSubTitle);
+        document.getElementsByClassName('recipe__subtitle')[0].innerHTML = recipeSubTitle[1];
     }
     
     //AJAX function from http://stackoverflow.com/a/10642418 Removed the IE5/6 tester because IDGAF
