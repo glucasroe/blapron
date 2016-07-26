@@ -59,25 +59,6 @@
             recipePage = recipePage.replace(/(\r\n|\n|\r)/gm,"");
 
 
-            //Extract the Recipe URL
-            findLink = new RegExp(/(?:pdf-download-link" href=")(.*?\.pdf)/gm);
-            recipeLink = findLink.exec(recipePage);
-            document.getElementsByClassName('recipe__link')[0].innerHTML = "<a href='" + recipeLink[1] + "'>Recipe Link</a>";
-
-            //Extract Recipe Title
-            findTitle = new RegExp(/main-title'>?(.*?)<\/h1>?/im);
-            recipeTitle = findTitle.exec(recipePage);
-            document.getElementsByClassName('recipe__title')[0].innerHTML = recipeTitle[1];
-
-            //Extract Recipe Subtitle
-            findSubTitle = new RegExp(/'sub-title'>?(.*?)<\/h2>?/im);
-            recipeSubTitle = findSubTitle.exec(recipePage);
-            document.getElementsByClassName('recipe__subtitle')[0].innerHTML = recipeSubTitle[1];
-
-            //Get ingredients
-            findIngredients = new RegExp(/<li itemprop="ingredients">(.*?)<\/li>?/gim);
-            recipeIngredients = findIngredients.exec(recipePage);
-            console.log(recipeIngredients);
         }
 
         //AJAX function from http://stackoverflow.com/a/10642418 Removed the IE5/6 tester because IDGAF
