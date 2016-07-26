@@ -17,35 +17,43 @@
   <div id='storage'></div>
   <script>
     //Definitions
-    pageUrl = 'http://cors.io/?u=https://www.blueapron.com/recipes/'; //user cors.io for cross domain function
+    blapronURL = 'https://www.blueapron.com/recipes/'
+    corsURL = 'http://cors.io/?u='+blapronURL; //user cors.io for cross domain function
     exclude = 0; //To make sure a number doesn't come up when rerolled
     minRecipe = 250; //Magic numbers from Blue Apron guess and test
     maxRecipe = 949;
     
     //get recipe function
-    function getRecipe(pageURL){
+    function getRecipe(corsURL){
         recipeNumber = getRandomInt(minRecipe, maxRecipe).toString();
     
         //Restart function if using excluded number
         if(recipeNumber == exclude){
             getRecipe();
         }
-        pageURL = pageURL + recipeNumber;
-        httpGet(pageURL);
-        
+        corsURL = corsURL + recipeNumber;
+        try{
+          httpGet(corsURL);
+        }
+        catch(err){
+          console.log(err);
+          getRecipe();
+        }
+        //Figure out how to catch the error here
         //recipePage now holds values
-        
+    
         //restart function if you get a 404 page
         if(recipePage.indexOf('js-RecipeArea') == -1){
             getRecipe();
         }
     
         /*
-        If I write this to a div, then I can use native methods for targetting classes
-        inside of the BlueApron DOM. The only real drawback of this that I can think of is 
-        that I would be downloading a bunch of images and assets that I don't 
-        need, so I think it would be faster to just search through the resultant string and
-        extract data based on pattern matching.
+        If I write this to a div, then I can use native methods for
+        targetting classes inside of the BlueApron DOM. The only real
+        drawback of this that I can think of is that I would be downloading
+        a bunch of images and assets that I don't need, so I think it would
+        be faster to just search through the resultant string and extract
+        data based on pattern matching.
     
         But that is a lot harder.
         */
@@ -55,20 +63,24 @@
     
     
         //Extract the Recipe URL
-        findLink = new RegExp(/(?:pdf-download-link" href=")(.*?\.pdf)/g);
+        findLink = new RegExp(/(?:pdf-download-link" href=")(.*?\.pdf)/gm);
         recipeLink = findLink.exec(recipePage);
         document.getElementsByClassName('recipe__link')[0].innerHTML = "<a href='" + recipeLink[1] + "'>Recipe Link</a>";
     
         //Extract Recipe Title
-        findTitle = new RegExp(/(?:main-title'>)(.*\s)(?:.*<\/h1>)/im);
+        findTitle = new RegExp(/main-title'>?(.*?)<\/h1>?/im);
         recipeTitle = findTitle.exec(recipePage);
         document.getElementsByClassName('recipe__title')[0].innerHTML = recipeTitle[1];
     
         //Extract Recipe Subtitle
-        findSubTitle = new RegExp(/(?:sub-title'>)(.*)(?=.*?<\/h2>)/im);
+        findSubTitle = new RegExp(/'sub-title'>?(.*?)<\/h2>?/im);
         recipeSubTitle = findSubTitle.exec(recipePage);
-        console.log(recipeSubTitle);
         document.getElementsByClassName('recipe__subtitle')[0].innerHTML = recipeSubTitle[1];
+    
+        //Get ingredients
+        findIngredients = new RegExp(/<li itemprop="ingredients">(.*?)<\/li>?/gim);
+        recipeIngredients = findIngredients.exec(recipePage);
+        console.log(recipeIngredients);
     }
     
     //AJAX function from http://stackoverflow.com/a/10642418 Removed the IE5/6 tester because IDGAF
@@ -82,20 +94,20 @@
             }
         }
         xmlhttp.open("GET", theUrl, false);
-        xmlhttp.send();    
+        xmlhttp.send();
     }
     
     //generate recipes loop
-    function generateRecipes(pageUrl){
+    function generateRecipes(corsURL){
         loopCounter = document.getElementById('loop-counter').value;
         while(loopCounter != 0){
-            getRecipe(pageUrl);
+            getRecipe(corsURL);
             loopCounter--;
         }
     }
     //generate recipes function
     document.getElementById("generate-recipes").addEventListener("click", function(){
-        generateRecipes(pageUrl);
+        generateRecipes(corsURL);
     });
     
     //utility functions
