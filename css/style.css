@@ -16,39 +16,22 @@ input::-webkit-inner-spin-button {
   background-color: #2B3A54;
   color: #aab9d4;
   display: flex;
-  justify-content: flex-end; }
+  justify-content: flex-start;
+  align-items: center; }
 
-.stepper {
-  margin: 0 1em; }
+.generator__label {
+  margin-left: 1em; }
 
-.stepper__label {
-  margin-right: 0.5em; }
-
-.stepper__control {
-  width: 1.5em;
-  height: 1.5em;
-  display: inline-block;
-  background-color: transparent;
-  border: 1px solid #6782b1;
-  color: #899ec2;
-  border-radius: 50%;
-  text-align: center;
-  text-decoration: none;
-  transition: background-color 0.25s; }
-  .stepper__control:hover, .stepper__control:focus {
-    background-color: #080b11;
-    outline: 0; }
-
-.stepper__field {
+.generator__field {
   padding: 1em;
   width: auto;
-  background-color: #1a2332;
+  background-color: #aab9d4;
   text-align: center;
-  font-size: 18px;
+  font-size: 1.2em;
   width: 3em;
-  color: #ecfffe;
+  color: black;
   border: 0; }
-  .stepper__field:focus {
+  .generator__field:focus {
     outline: 0; }
 
 .generate-recipes {
@@ -56,10 +39,16 @@ input::-webkit-inner-spin-button {
   padding: 0 2em;
   border: 0;
   color: #ecfffe;
-  font-size: 1em; }
+  font-size: 1em;
+  padding: 1.2em 2em;
+  transition: background-color 0.25s; }
+  .generate-recipes:focus, .generate-recipes:hover {
+    background-color: black;
+    outline: 0; }
 
 .recipes {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap; }
 
 .recipe {

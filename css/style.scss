@@ -46,56 +46,45 @@ $gs5: darken($grey, 50%);
     background-color: $grey;
     color: $gt5;
     display: flex;
-    justify-content:flex-end;
+    justify-content:flex-start;
+    align-items:center;
 }
 
-.stepper{
-    margin: 0 1em;
+.generator__label{
+    margin-left: 1em;
 }
-.stepper__label{
-    margin-right: 0.5em;
-}
-.stepper__control{
-    width: 1.5em;
-    height: 1.5em;
-    display: inline-block;
-    background-color: transparent;
-    border: 1px solid $gt3;
-    color: $gt4;
-    border-radius: 50%;
-    text-align: center;
-    text-decoration: none;
-    transition: background-color 0.25s;
-    &:hover,&:focus{
-        background-color: $gs2;
-        outline: 0;
-    }
-}
-.stepper__field{
+
+.generator__field{
     padding: 1em;
     width: auto;
-    background-color: $gs1;
+    background-color: $gt5;
     text-align: center;
-    font-size: 18px;
+    font-size: 1.2em;
     width: 3em;
-    color: $t5;
+    color: $s4;
     border:0;
     &:focus{
         outline: 0;
     }
 }
-.stepper__control--increment{}
-.stepper__control--decrement{}
+
 .generate-recipes{
     background-color: $gs1;
     padding: 0 2em;
     border: 0;
     color: $t5;
     font-size: 1em;
+    padding:1.2em 2em;
+    transition: background-color 0.25s;
+    &:focus,&:hover{
+        background-color: $gs5;
+        outline:0;
+    }
 }
 
 .recipes{
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
 }
 .recipe{
