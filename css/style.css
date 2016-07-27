@@ -1,3 +1,130 @@
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+* {
+  box-sizing: border-box; }
+
+.recipes {
+  margin: 0 auto 0;
+  display: flex;
+  flex-wrap: wrap; }
+
+.recipe {
+  position: relative;
+  border-radius: 5px;
+  border: 1px solid #00d2c2;
+  max-width: 400px;
+  font-size: 1rem;
+  background-color: #ecfffe;
+  overflow: hidden;
+  margin: 1em; }
+
+.recipe__image {
+  background-image: url("https://media.blueapron.com/recipes/1732/c_main_dish_images/1466023268-4-9923/071816_2PV3_FreshPappardelle-3604_Right_splash_feature.jpg");
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: 100px; }
+
+.recipe__regenerate {
+  position: absolute;
+  display: block;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding-right: 0.25rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ecfffe;
+  border: 0; }
+  .recipe__regenerate:before {
+    content: 'Swap out this recipe';
+    text-align: right;
+    font-weight: normal;
+    position: relative;
+    top: 1em;
+    right: 1em;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s; }
+  .recipe__regenerate:after {
+    position: absolute;
+    display: block;
+    content: '';
+    top: -2rem;
+    right: -2rem;
+    width: 4rem;
+    height: 4rem;
+    background-color: #009F93;
+    transform: rotate(45deg);
+    z-index: -1;
+    transition: opacity 0.25s; }
+  .recipe__regenerate:hover ~ .recipe__blind {
+    opacity: 1; }
+  .recipe__regenerate:hover:before {
+    opacity: 1; }
+
+.recipe__blind {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 159, 147, 0.7);
+  z-index: 5;
+  transition: opacity 0.25s; }
+
+.recipe__details {
+  padding: 1.5rem; }
+
+.recipe__title {
+  font-family: "Georgia", Times, "Times New Roman", serif;
+  font-weight: normal;
+  color: #009F93;
+  font-size: 2em;
+  line-height: 1;
+  margin: 0 0 0.25em 0; }
+
+.recipe__subtitle {
+  font-family: serif;
+  color: #3c5176;
+  font-style: italic;
+  font-size: 0.8em;
+  margin-top: 0; }
+
+.recipe__meta {
+  width: 100%;
+  text-align: left;
+  color: #444;
+  border-collapse: collapse;
+  margin-bottom: 1.5em; }
+
+.recipe__meta th {
+  color: #009F93;
+  padding: .25em;
+  border-bottom: 2px solid #009F93;
+  border-right: 0;
+  border-left: 0; }
+
+.recipe__meta td {
+  padding: .25em; }
+
+.recipe__pdf-link {
+  background-color: #009F93;
+  display: inline-block;
+  width: auto;
+  color: #ecfffe;
+  text-decoration: none;
+  padding: .5em 1em;
+  border-radius: 1em;
+  transition: background-color 0.25s, transform 0.25s, box-shadow 0.25s; }
+  .recipe__pdf-link:hover {
+    background-color: #006c64;
+    transform: translateY(-0.15em);
+    box-shadow: 0px 2px 5px #aab9d4; }
