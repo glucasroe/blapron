@@ -3,12 +3,14 @@
     %link(rel='stylesheet' type='text/css' href='css/style.css')
     %meta(charset='utf-8')
 %body
-    %h1 Generate Some Recipes
-    .stepper
-        %button.stepper__increment +
-        %input.loop-counter#loop-counter(type='number' value='1')
-        %button.stepper_decrement -
-    %button.generate-recipes#generate-recipes() Generate Recipes
+    //%h1 Generate Some Recipes
+    .generator
+        .stepper
+            %label.stepper__label(for="generator__number") Number of recipes to generate
+            %a.stepper__control.stepper__control--increment(href="#") +
+            %input.stepper__field#generator__number(type='number' value='1' size='4')
+            %a.stepper__control.stepper__control--decrement(href="#") -
+        %button.generate-recipes#generate-recipes() Generate Recipes
 
     .recipes
         .recipe

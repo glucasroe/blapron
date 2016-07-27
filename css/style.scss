@@ -1,7 +1,15 @@
 $sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $serif: 'Georgia', Times, 'Times New Roman', serif;
-body{
+html,body{
     font-family: $sans;
+    margin:0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 *{
@@ -34,9 +42,59 @@ $gs4: darken($grey, 40%);
 $gs5: darken($grey, 50%);
 
 
+.generator{
+    background-color: $grey;
+    color: $gt5;
+    display: flex;
+    justify-content:flex-end;
+}
+
+.stepper{
+    margin: 0 1em;
+}
+.stepper__label{
+    margin-right: 0.5em;
+}
+.stepper__control{
+    width: 1.5em;
+    height: 1.5em;
+    display: inline-block;
+    background-color: transparent;
+    border: 1px solid $gt3;
+    color: $gt4;
+    border-radius: 50%;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.25s;
+    &:hover,&:focus{
+        background-color: $gs2;
+        outline: 0;
+    }
+}
+.stepper__field{
+    padding: 1em;
+    width: auto;
+    background-color: $gs1;
+    text-align: center;
+    font-size: 18px;
+    width: 3em;
+    color: $t5;
+    border:0;
+    &:focus{
+        outline: 0;
+    }
+}
+.stepper__control--increment{}
+.stepper__control--decrement{}
+.generate-recipes{
+    background-color: $gs1;
+    padding: 0 2em;
+    border: 0;
+    color: $t5;
+    font-size: 1em;
+}
 
 .recipes{
-  margin: 0 auto 0;
   display: flex;
   flex-wrap: wrap;
 }

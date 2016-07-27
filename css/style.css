@@ -1,11 +1,64 @@
-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+html, body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0; }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0;
+  /* <-- Apparently some margin are still there even though it's hidden */ }
 
 * {
   box-sizing: border-box; }
 
+.generator {
+  background-color: #2B3A54;
+  color: #aab9d4;
+  display: flex;
+  justify-content: flex-end; }
+
+.stepper {
+  margin: 0 1em; }
+
+.stepper__label {
+  margin-right: 0.5em; }
+
+.stepper__control {
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+  background-color: transparent;
+  border: 1px solid #6782b1;
+  color: #899ec2;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.25s; }
+  .stepper__control:hover, .stepper__control:focus {
+    background-color: #080b11;
+    outline: 0; }
+
+.stepper__field {
+  padding: 1em;
+  width: auto;
+  background-color: #1a2332;
+  text-align: center;
+  font-size: 18px;
+  width: 3em;
+  color: #ecfffe;
+  border: 0; }
+  .stepper__field:focus {
+    outline: 0; }
+
+.generate-recipes {
+  background-color: #1a2332;
+  padding: 0 2em;
+  border: 0;
+  color: #ecfffe;
+  font-size: 1em; }
+
 .recipes {
-  margin: 0 auto 0;
   display: flex;
   flex-wrap: wrap; }
 
