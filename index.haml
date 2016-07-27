@@ -10,102 +10,33 @@
 
 
     .recipes
-        .recipe
-            %img.recipe__image()
-            %a.recipe__regenerate(href="#") &#x27f2;
-            .recipe__details
-                %h2.recipe__title Fpresh Pappardelle Pasta
-                %h3.recipe__subtitle with Summer Tomato-Olive Ragù & Ricotta Salata
-                %table.recipe__meta
-                    %tr
-                        %th Cooking Time
-                        %th Servings
-                    %tr
-                        %td.meta__time 15 minutes
-                        %td.meta__servings 2 servings
-                %a.recipe__pdf-link(href="#")Download PDF
-            .recipe__string
-            .recipe__blind
-        .recipe
-            %img.recipe__image()
-            %a.recipe__regenerate(href="#") &#x27f2;
-            .recipe__details
-                %h2.recipe__title Fpresh Pappardelle Pasta
-                %h3.recipe__subtitle with Summer Tomato-Olive Ragù & Ricotta Salata
-                %table.recipe__meta
-                    %tr
-                        %th Cooking Time
-                        %th Servings
-                    %tr
-                        %td.meta__time 15 minutes
-                        %td.meta__servings 2 servings
-                %a.recipe__pdf-link(href="#")Download PDF
-            .recipe__string
-            .recipe__blind
-        .recipe
-            %img.recipe__image()
-            %a.recipe__regenerate(href="#") &#x27f2;
-            .recipe__details
-                %h2.recipe__title Fpresh Pappardelle Pasta
-                %h3.recipe__subtitle with Summer Tomato-Olive Ragù & Ricotta Salata
-                %table.recipe__meta
-                    %tr
-                        %th Cooking Time
-                        %th Servings
-                    %tr
-                        %td.meta__time 15 minutes
-                        %td.meta__servings 2 servings
-                %a.recipe__pdf-link(href="#")Download PDF
-            .recipe__string
-            .recipe__blind
-        .recipe
-            %img.recipe__image()
-            %a.recipe__regenerate(href="#") &#x27f2;
-            .recipe__details
-                %h2.recipe__title Fpresh Pappardelle Pasta
-                %h3.recipe__subtitle with Summer Tomato-Olive Ragù & Ricotta Salata
-                %table.recipe__meta
-                    %tr
-                        %th Cooking Time
-                        %th Servings
-                    %tr
-                        %td.meta__time 15 minutes
-                        %td.meta__servings 2 servings
-                %a.recipe__pdf-link(href="#")Download PDF
-            .recipe__string
-            .recipe__blind
-        .recipe
-            %img.recipe__image()
-            %a.recipe__regenerate(href="#") &#x27f2;
-            .recipe__details
-                %h2.recipe__title Fpresh Pappardelle Pasta
-                %h3.recipe__subtitle with Summer Tomato-Olive Ragù & Ricotta Salata
-                %table.recipe__meta
-                    %tr
-                        %th Cooking Time
-                        %th Servings
-                    %tr
-                        %td.meta__time 15 minutes
-                        %td.meta__servings 2 servings
-                %a.recipe__pdf-link(href="#")Download PDF
-            .recipe__string
-            .recipe__blind
-        .recipe
-            %img.recipe__image()
-            %a.recipe__regenerate(href="#") &#x27f2;
-            .recipe__details
-                %h2.recipe__title Fpresh Pappardelle Pasta
-                %h3.recipe__subtitle with Summer Tomato-Olive Ragù & Ricotta Salata
-                %table.recipe__meta
-                    %tr
-                        %th Cooking Time
-                        %th Servings
-                    %tr
-                        %td.meta__time 15 minutes
-                        %td.meta__servings 2 servings
-                %a.recipe__pdf-link(href="#")Download PDF
-            .recipe__string
-            .recipe__blind
+
+    #recipe__string
+    :plain
+        <script type='template' id='recipe-template'>
+            <div class='recipe'>
+                <div class='recipe__image'></div>
+                <a class='recipe__regenerate' onclick='' href='#'> &#x27f2;</a>
+                <div class='recipe__details'>
+                    <h2 class='recipe__title'>{{recipe-title}}</h2>
+                    <h3 class='recipe__subtitle'>{{recipe-subtitle}}</h3>
+                    <table class='recipe__meta'>
+                        <tbody>
+                            <tr>
+                                <th>Cooking Time</th>
+                                <th>Servings</th>
+                            </tr>
+                            <tr>
+                                <td class='meta__time'>{{meta-time}}</td>
+                                <td class='meta__servings'>{{meta-servings}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a class='recipe__pdf-link' href='{{recipe-pdf-link}}'>Download PDF</a>
+                </div>
+            </div>
+            <div class="recipe__blind"></div>
+        </script>
     :javascript
         //Definitions
         blapronURL = 'https://www.blueapron.com/recipes/'

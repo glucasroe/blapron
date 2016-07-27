@@ -9,134 +9,32 @@
     <input class='generator__field' id='generator__number' size='4' type='number' value='1'>
     <label class='generator__label' for='generator__number'>Number of recipes to generate</label>
   </div>
-  <div class='recipes'>
-    <div class='recipe'>
-      <img class='recipe__image'>
-      <a class='recipe__regenerate' href='#'>&#x27f2;</a>
-      <div class='recipe__details'>
-        <h2 class='recipe__title'>Fpresh Pappardelle Pasta</h2>
-        <h3 class='recipe__subtitle'>with Summer Tomato-Olive Ragù & Ricotta Salata</h3>
-        <table class='recipe__meta'>
-          <tr>
-            <th>Cooking Time</th>
-            <th>Servings</th>
-          </tr>
-          <tr>
-            <td class='meta__time'>15 minutes</td>
-            <td class='meta__servings'>2 servings</td>
-          </tr>
-        </table>
-        <a class='recipe__pdf-link' href='#'>Download PDF</a>
+  <div class='recipes'></div>
+  <div id='recipe__string'></div>
+  <script type='template' id='recipe-template'>
+      <div class='recipe'>
+          <div class='recipe__image'></div>
+          <a class='recipe__regenerate' onclick='' href='#'> &#x27f2;</a>
+          <div class='recipe__details'>
+              <h2 class='recipe__title'>{{recipe-title}}</h2>
+              <h3 class='recipe__subtitle'>{{recipe-subtitle}}</h3>
+              <table class='recipe__meta'>
+                  <tbody>
+                      <tr>
+                          <th>Cooking Time</th>
+                          <th>Servings</th>
+                      </tr>
+                      <tr>
+                          <td class='meta__time'>{{meta-time}}</td>
+                          <td class='meta__servings'>{{meta-servings}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+              <a class='recipe__pdf-link' href='{{recipe-pdf-link}}'>Download PDF</a>
+          </div>
       </div>
-      <div class='recipe__string'></div>
-      <div class='recipe__blind'></div>
-    </div>
-    <div class='recipe'>
-      <img class='recipe__image'>
-      <a class='recipe__regenerate' href='#'>&#x27f2;</a>
-      <div class='recipe__details'>
-        <h2 class='recipe__title'>Fpresh Pappardelle Pasta</h2>
-        <h3 class='recipe__subtitle'>with Summer Tomato-Olive Ragù & Ricotta Salata</h3>
-        <table class='recipe__meta'>
-          <tr>
-            <th>Cooking Time</th>
-            <th>Servings</th>
-          </tr>
-          <tr>
-            <td class='meta__time'>15 minutes</td>
-            <td class='meta__servings'>2 servings</td>
-          </tr>
-        </table>
-        <a class='recipe__pdf-link' href='#'>Download PDF</a>
-      </div>
-      <div class='recipe__string'></div>
-      <div class='recipe__blind'></div>
-    </div>
-    <div class='recipe'>
-      <img class='recipe__image'>
-      <a class='recipe__regenerate' href='#'>&#x27f2;</a>
-      <div class='recipe__details'>
-        <h2 class='recipe__title'>Fpresh Pappardelle Pasta</h2>
-        <h3 class='recipe__subtitle'>with Summer Tomato-Olive Ragù & Ricotta Salata</h3>
-        <table class='recipe__meta'>
-          <tr>
-            <th>Cooking Time</th>
-            <th>Servings</th>
-          </tr>
-          <tr>
-            <td class='meta__time'>15 minutes</td>
-            <td class='meta__servings'>2 servings</td>
-          </tr>
-        </table>
-        <a class='recipe__pdf-link' href='#'>Download PDF</a>
-      </div>
-      <div class='recipe__string'></div>
-      <div class='recipe__blind'></div>
-    </div>
-    <div class='recipe'>
-      <img class='recipe__image'>
-      <a class='recipe__regenerate' href='#'>&#x27f2;</a>
-      <div class='recipe__details'>
-        <h2 class='recipe__title'>Fpresh Pappardelle Pasta</h2>
-        <h3 class='recipe__subtitle'>with Summer Tomato-Olive Ragù & Ricotta Salata</h3>
-        <table class='recipe__meta'>
-          <tr>
-            <th>Cooking Time</th>
-            <th>Servings</th>
-          </tr>
-          <tr>
-            <td class='meta__time'>15 minutes</td>
-            <td class='meta__servings'>2 servings</td>
-          </tr>
-        </table>
-        <a class='recipe__pdf-link' href='#'>Download PDF</a>
-      </div>
-      <div class='recipe__string'></div>
-      <div class='recipe__blind'></div>
-    </div>
-    <div class='recipe'>
-      <img class='recipe__image'>
-      <a class='recipe__regenerate' href='#'>&#x27f2;</a>
-      <div class='recipe__details'>
-        <h2 class='recipe__title'>Fpresh Pappardelle Pasta</h2>
-        <h3 class='recipe__subtitle'>with Summer Tomato-Olive Ragù & Ricotta Salata</h3>
-        <table class='recipe__meta'>
-          <tr>
-            <th>Cooking Time</th>
-            <th>Servings</th>
-          </tr>
-          <tr>
-            <td class='meta__time'>15 minutes</td>
-            <td class='meta__servings'>2 servings</td>
-          </tr>
-        </table>
-        <a class='recipe__pdf-link' href='#'>Download PDF</a>
-      </div>
-      <div class='recipe__string'></div>
-      <div class='recipe__blind'></div>
-    </div>
-    <div class='recipe'>
-      <img class='recipe__image'>
-      <a class='recipe__regenerate' href='#'>&#x27f2;</a>
-      <div class='recipe__details'>
-        <h2 class='recipe__title'>Fpresh Pappardelle Pasta</h2>
-        <h3 class='recipe__subtitle'>with Summer Tomato-Olive Ragù & Ricotta Salata</h3>
-        <table class='recipe__meta'>
-          <tr>
-            <th>Cooking Time</th>
-            <th>Servings</th>
-          </tr>
-          <tr>
-            <td class='meta__time'>15 minutes</td>
-            <td class='meta__servings'>2 servings</td>
-          </tr>
-        </table>
-        <a class='recipe__pdf-link' href='#'>Download PDF</a>
-      </div>
-      <div class='recipe__string'></div>
-      <div class='recipe__blind'></div>
-    </div>
-  </div>
+      <div class="recipe__blind"></div>
+  </script>
   <script>
     //Definitions
     blapronURL = 'https://www.blueapron.com/recipes/'
