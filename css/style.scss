@@ -86,12 +86,33 @@ $gs5: darken($grey, 50%);
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  &:after{
+      content:'';
+      position: absolute;
+      display:block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: transparentize($grey, 0.2);
+      opacity: 0;
+      transition: opacity 0.25s;
+      pointer-events: none;
+  }
 }
+
+.recipes.loading{
+    pointer-events: none;
+    &:after{
+        opacity: 1;
+    }
+}
+
 .recipe{
   position: relative;
   border-radius: 5px;
   border: 1px solid $t1;
-  max-width: 400px;
+  width: 400px;
   font-size: 1rem;
   background-color: $t5;
   overflow: hidden;
@@ -99,7 +120,6 @@ $gs5: darken($grey, 50%);
 }
 
 .recipe__image{
-  background-image: url('https://media.blueapron.com/recipes/1732/c_main_dish_images/1466023268-4-9923/071816_2PV3_FreshPappardelle-3604_Right_splash_feature.jpg');
   background-size: cover;
   background-position: center center;
   width: 100%;
@@ -181,10 +201,22 @@ $gs5: darken($grey, 50%);
 .recipe__title{
   font-family: $serif;
   font-weight: normal;
-  color: $base;
   font-size: 2em;
   line-height: 1;
   margin: 0 0 0.25em 0;
+}
+.recipe__title a{
+    text-decoration: none;
+    color: $base;
+    transition: color 0.25s;
+    background-image: linear-gradient(to bottom, transparent 50%, transparentize($base,0.5) 50%);
+    text-shadow: 1px 1px 0px $t5, -1px -1px -0px $t5;
+    background-repeat: repeat-x;
+    background-size: 2px 2px;
+    background-position: 0 0.95em;
+    &:hover{
+        color: $s1;
+    }
 }
 .recipe__subtitle{
   font-family: serif;
@@ -193,27 +225,18 @@ $gs5: darken($grey, 50%);
   font-size: 0.8em;
   margin-top:0;
 }
-.recipe__meta{
-  width: 100%;
-  text-align: left;
-  color: #444;
-  border-collapse: collapse;
-  margin-bottom: 1.5em;
+.nutrition-information{
+    margin-bottom: 1em;
+    display:flex;
 }
-
-.recipe__meta th{
-  color: $base;
-  padding: .25em;
-  border-bottom: 2px solid $base;
-  border-right: 0;
-  border-left: 0;
+.col-xs-4{
+    width: 30%;
 }
-
-.recipe__meta td{
-  padding: .25em;
+.field-name{
+    font-weight:bold;
+    border-bottom: 2px solid $base;
+    margin-bottom: 0.25em;
 }
-.meta__time{}
-.meta__servings{}
 
 .recipe__pdf-link{
   background-color: $base;

@@ -50,19 +50,35 @@ input::-webkit-inner-spin-button {
   display: flex;
   justify-content: center;
   flex-wrap: wrap; }
+  .recipes:after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(43, 58, 84, 0.8);
+    opacity: 0;
+    transition: opacity 0.25s;
+    pointer-events: none; }
+
+.recipes.loading {
+  pointer-events: none; }
+  .recipes.loading:after {
+    opacity: 1; }
 
 .recipe {
   position: relative;
   border-radius: 5px;
   border: 1px solid #00d2c2;
-  max-width: 400px;
+  width: 400px;
   font-size: 1rem;
   background-color: #ecfffe;
   overflow: hidden;
   margin: 1em; }
 
 .recipe__image {
-  background-image: url("https://media.blueapron.com/recipes/1732/c_main_dish_images/1466023268-4-9923/071816_2PV3_FreshPappardelle-3604_Right_splash_feature.jpg");
   background-size: cover;
   background-position: center center;
   width: 100%;
@@ -128,10 +144,21 @@ input::-webkit-inner-spin-button {
 .recipe__title {
   font-family: "Georgia", Times, "Times New Roman", serif;
   font-weight: normal;
-  color: #009F93;
   font-size: 2em;
   line-height: 1;
   margin: 0 0 0.25em 0; }
+
+.recipe__title a {
+  text-decoration: none;
+  color: #009F93;
+  transition: color 0.25s;
+  background-image: linear-gradient(to bottom, transparent 50%, rgba(0, 159, 147, 0.5) 50%);
+  text-shadow: 1px 1px 0px #ecfffe, -1px -1px 0px #ecfffe;
+  background-repeat: repeat-x;
+  background-size: 2px 2px;
+  background-position: 0 0.95em; }
+  .recipe__title a:hover {
+    color: #006c64; }
 
 .recipe__subtitle {
   font-family: serif;
@@ -140,22 +167,17 @@ input::-webkit-inner-spin-button {
   font-size: 0.8em;
   margin-top: 0; }
 
-.recipe__meta {
-  width: 100%;
-  text-align: left;
-  color: #444;
-  border-collapse: collapse;
-  margin-bottom: 1.5em; }
+.nutrition-information {
+  margin-bottom: 1em;
+  display: flex; }
 
-.recipe__meta th {
-  color: #009F93;
-  padding: .25em;
+.col-xs-4 {
+  width: 30%; }
+
+.field-name {
+  font-weight: bold;
   border-bottom: 2px solid #009F93;
-  border-right: 0;
-  border-left: 0; }
-
-.recipe__meta td {
-  padding: .25em; }
+  margin-bottom: 0.25em; }
 
 .recipe__pdf-link {
   background-color: #009F93;
