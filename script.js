@@ -76,7 +76,10 @@ function getRecipe(){
 
 //generate recipes loop
 function generateRecipes(){
-    document.getElementById('recipes').className += ' loading';
+    //Wipe out previous session
+    localStorage.clear();
+
+    document.getElementById('recipes').className = 'recipes loading';
     var loopCounter = document.getElementById('generator__number').value;
     while(loopCounter !== 0){
         var recipeMarkup = getRecipe();
@@ -91,10 +94,6 @@ function generateRecipes(){
     }
     document.getElementById('recipes').className = 'recipes';
 }
-//generate recipes function
-/*document.getElementById("generate-recipes").addEventListener("click", function(){
-    generateRecipes();
-});*/
 
 //regenerate a specific recipe
 function recipeRegenerate(clickedLink){
