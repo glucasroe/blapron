@@ -22,11 +22,24 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
+function getIngredients(recipeResult){
+    /* if the item isn't set, it returns null */
+    var blapronIngredients = recipeResult.querySelectorAll('ul.ingredients-list li');
+    var parsedBlapronIngredients = [];
+    blapronIngredients.forEach(parsedBlapronIngredients);
+    console.log();
+}
+
+function parseBlapronIngredientList(blapronIngredients, parsedBlapronIngredients){
+    //return children of div.non-story || a.js-IngModalLink
+    parsedBlapronIngredients.push(blapronIngredients.getElementsByClassName('non-story').innerHTML || blapronIngredients.getElementsByClassName('js-IngModalLink').innerHTML);
+
+}
 
 //get recipe function
 function getRecipe(){
     var blapronURL = 'https://www.blueapron.com/recipes/';
-    var corsURL = 'http://cors.io/?u=' + blapronURL; //user cors.io for cross domain function
+    var corsURL = 'http://cors.io/?u=' + blapronURL; //uses cors.io for cross domain function
     var recipeNumber = getRandomInt(minRecipe, maxRecipe).toString();
     blapronURL = blapronURL + recipeNumber;
     corsURL = corsURL + recipeNumber;
@@ -64,15 +77,17 @@ function getRecipe(){
 
     var recipeMarkup = '<a class="recipe__regenerate" onclick="recipeRegenerate(this)" href="#"> &#x27f2;</a><div class="recipe__image" style="background-image: url('+ recipeImage +')"></div><div class="recipe__details"><h2 class="recipe__title"><a href="'+ blapronURL +'" target="_blank">' + recipeTitle + '</a></h2><h3 class="recipe__subtitle">'+ recipeSubtitle +'</h3><div class="nutrition-information">'+ recipeMeta +'</div><a class="recipe__pdf-link" href="'+ recipeLink +'" download>Download PDF</a></div></div><div class="recipe__blind">';
 
-    //This part should be in the generate Recipes function
-    /*var recipeDiv = document.createElement('div');
-    recipeDiv.className = 'recipe';
-    recipeDiv.innerHTML = recipeMarkup;
-    document.getElementById('recipes').appendChild(recipeDiv);*/
+    //getIngredients(recipeResult);
     return recipeMarkup;
 }
 
-
+//Storage loop
+function recipeTable(){
+//Check if item is in Storage
+//if not in storage, insert
+//if in storage, get value
+    //add current value to value
+}
 
 //generate recipes loop
 function generateRecipes(){
@@ -97,6 +112,7 @@ function generateRecipes(){
 
 //regenerate a specific recipe
 function recipeRegenerate(clickedLink){
+    //Roll in an exclude here? (Even though it's a 1 in 700 chance of a dupe)
     var recipe = clickedLink.parentNode;
     recipe.innerHTML = "";
     var regeneratedRecipe = getRecipe();
