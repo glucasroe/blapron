@@ -25,14 +25,16 @@ function getRandomInt(min, max) {
 function getIngredients(recipeResult){
     /* if the item isn't set, it returns null */
     var blapronIngredients = recipeResult.querySelectorAll('ul.ingredients-list li');
-    var parsedBlapronIngredients = [];
-    blapronIngredients.forEach(parsedBlapronIngredients);
-    console.log();
+    blapronIngredients.forEach(function(entry){
+        if(entry.indexOf('div.non-story') !== -1){
+            entry = this.getElementsByClassName('non-story').innerHTML;
+        }
+    });
 }
 
-function parseBlapronIngredientList(blapronIngredients, parsedBlapronIngredients){
+function parseBlapronIngredientList(entry){
     //return children of div.non-story || a.js-IngModalLink
-    parsedBlapronIngredients.push(blapronIngredients.getElementsByClassName('non-story').innerHTML || blapronIngredients.getElementsByClassName('js-IngModalLink').innerHTML);
+    entry
 
 }
 
@@ -77,7 +79,7 @@ function getRecipe(){
 
     var recipeMarkup = '<a class="recipe__regenerate" onclick="recipeRegenerate(this)" href="#"> &#x27f2;</a><div class="recipe__image" style="background-image: url('+ recipeImage +')"></div><div class="recipe__details"><h2 class="recipe__title"><a href="'+ blapronURL +'" target="_blank">' + recipeTitle + '</a></h2><h3 class="recipe__subtitle">'+ recipeSubtitle +'</h3><div class="nutrition-information">'+ recipeMeta +'</div><a class="recipe__pdf-link" href="'+ recipeLink +'" download>Download PDF</a></div></div><div class="recipe__blind">';
 
-    //getIngredients(recipeResult);
+    getIngredients(recipeResult);
     return recipeMarkup;
 }
 
