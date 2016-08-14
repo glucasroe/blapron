@@ -40,11 +40,11 @@ function parseBlapronIngredientList(entry){
 
 //get recipe function
 function getRecipe(){
+    // CORS.io is apparently unreliable, so instead I'm using this extension to allow CORS https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related?hl=en
+
     var blapronURL = 'https://www.blueapron.com/recipes/';
-    var corsURL = 'http://cors.io/?u=' + blapronURL; //uses cors.io for cross domain function
     var recipeNumber = getRandomInt(minRecipe, maxRecipe).toString();
     blapronURL = blapronURL + recipeNumber;
-    corsURL = corsURL + recipeNumber;
 
     //Restart function if using excluded number
     if(recipeNumber === exclude){
@@ -53,10 +53,9 @@ function getRecipe(){
 
     //Figure out how to catch the error here
     try{
-      httpGet(corsURL);
+      httpGet(blapronURL);
     }
     catch(err){
-      console.log("YIKES AHOY");
       getRecipe();
     }
     //recipePage now holds values
