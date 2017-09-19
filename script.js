@@ -42,9 +42,10 @@ function parseBlapronIngredientList(entry){
 function getRecipe(){
     // CORS.io is apparently unreliable, so instead I'm using this extension to allow CORS https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related?hl=en
 
-    var blapronURL = 'https://www.blueapron.com/recipes/';
+    var blapronURL = 'https://cors.io/?https://www.blueapron.com/recipes/';
     var recipeNumber = getRandomInt(minRecipe, maxRecipe).toString();
     blapronURL = blapronURL + recipeNumber;
+    var clickableURL = 'https://blueapron.com/recipes/' + recipeNumber;
 
     //Restart function if using excluded number
     if(recipeNumber === exclude){
@@ -61,22 +62,22 @@ function getRecipe(){
     //recipePage now holds values
 
     //restart function if you get a 404 page
-    if(recipePage.indexOf('js-RecipeArea') === -1){
-        getRecipe();
-    }
+    //if(recipePage.indexOf('js-RecipeArea') === -1){
+    //    getRecipe();
+    //}
 
     var recipeResult = document.createElement('div');
     recipeResult.innerHTML = recipePage;
 
-    var recipeImage = recipeResult.getElementsByClassName('rec-splash-img')[0].src;
-    var recipeTitle = recipeResult.getElementsByClassName('main-title')[0].textContent;
-    var recipeSubtitle = recipeResult.getElementsByClassName('sub-title')[0].textContent;
+    var recipeImage = recipeResult.getElementsByClassName('img-max')[0].src;
+    var recipeTitle = recipeResult.getElementsByClassName('ba-recipe-title__main')[0].textContent;
+    var recipeSubtitle = recipeResult.getElementsByClassName('ba-recipe-title__sub mt-10')[0].textContent;
     //var recipeTime;
     //var recipeServings;
-    var recipeMeta = recipeResult.getElementsByClassName('nutrition-information')[0].innerHTML;
+    //var recipeMeta = recipeResult.getElementsByClassName('nutrition-information')[0].innerHTML;
+    var recipeMeta = null;
     var recipeLink = recipeResult.getElementsByClassName('pdf-download-link')[0].href;
-
-    var recipeMarkup = '<a class="recipe__regenerate" onclick="recipeRegenerate(this)" href="#"> &#x27f2;</a><div class="recipe__image" style="background-image: url('+ recipeImage +')"></div><div class="recipe__details"><h2 class="recipe__title"><a href="'+ blapronURL +'" target="_blank">' + recipeTitle + '</a></h2><h3 class="recipe__subtitle">'+ recipeSubtitle +'</h3><div class="nutrition-information">'+ recipeMeta +'</div><a class="recipe__pdf-link" href="'+ recipeLink +'" download>Download PDF</a></div></div><div class="recipe__blind">';
+    var recipeMarkup = '<a class="recipe__regenerate" onclick="recipeRegenerate(this)" href="#"> &#x27f2;</a><div class="recipe__image" style="background-image: url('+ recipeImage +')"></div><div class="recipe__details"><h2 class="recipe__title"><a href="'+ clickableURL +'" target="_blank">' + recipeTitle + '</a></h2><h3 class="recipe__subtitle">'+ recipeSubtitle +'</h3><a class="recipe__pdf-link" href="'+ recipeLink +'" download>Download PDF</a></div></div><div class="recipe__blind">';
 
     getIngredients(recipeResult);
     return recipeMarkup;
